@@ -1,12 +1,11 @@
 /** @format */
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
-
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import { useStore } from '../../custom-hooks/useStore';
 import { Context } from '../../context/store';
-import CustomGrid from '../../components/CustomGrid';
-import { STORES_COLUMN_DATA } from './tableHeaders';
 import { makeStyles } from '@material-ui/styles';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
@@ -23,30 +22,49 @@ const Filter = () => {
   // useStore hook for login
   let stores = useStore();
 
-  const [value, setValue] = React.useState(new Date());
+  const [fieldValues, setFieldValues] = React.useState({
+    startDate: new Date(),
+    endDate: new Date(),
+  });
   const { state, dispatch } = useContext(Context);
   const classes = useStyles();
 
   useEffect(() => {}, []);
 
-  return tableContent.length ? (
+  return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Grid item xs={12}>
+      <Grid item xs={12} style={{ display: 'flex' }}>
         <DatePicker
           disableFuture
-          label="Responsive"
+          label="From"
           openTo="month"
           views={['year', 'month', 'day']}
-          value={value}
+          value={fieldValues.startDate}
           onChange={(newValue) => {
-            setValue(newValue);
+            setFieldValues({ ...fieldValues, startDate: newValue });
           }}
           renderInput={(params) => <TextField {...params} />}
         />
+        <DatePicker
+          disableFuture
+          label="To"
+          openTo="month"
+          views={['year', 'month', 'day']}
+          value={fieldValues.startDate}
+          onChange={(newValue) => {
+            setFieldValues({ ...fieldValues, endDate: newValue });
+          }}
+          renderInput={(params) => (
+            <TextField {...params} style={{ marginLeft: 10 }} />
+          )}
+        />
+        <Button
+          style={{ backgroundColor: '#006AB4', marginLeft: 10, color: '#FFF' }}
+        >
+          Refine
+        </Button>
       </Grid>
     </LocalizationProvider>
-  ) : (
-    ''
   );
 };
 
