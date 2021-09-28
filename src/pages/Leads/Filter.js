@@ -50,13 +50,6 @@ const Filter = () => {
           renderInput={(params) => (
             <TextField
               {...params}
-              InputLabelProps={{
-                style: {
-                  '-webkit-transform': 'translate(13px, 8px) scale(1)',
-                  transform: 'translate(14px, 8px) scale(1)',
-                  '-ms-transform': 'translate(14px, 8px) scale(1)',
-                },
-              }}
               inputProps={{
                 style: { 'box-sizing': 'border-box' },
               }}
