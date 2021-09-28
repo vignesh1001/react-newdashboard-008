@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useStore } from '../../custom-hooks/useStore';
 import { Context } from '../../context/store';
+import PrimaryButton from '../../components/Buttons/PrimaryButton';
 import { makeStyles } from '@material-ui/styles';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
@@ -50,7 +51,6 @@ const Filter = () => {
           <DatePicker
             disableFuture
             label="From"
-            openTo="month"
             views={['year', 'month', 'day']}
             value={fieldValues.startDate}
             onChange={(newValue) => {
@@ -72,7 +72,6 @@ const Filter = () => {
           <DatePicker
             disableFuture
             label="To"
-            openTo="month"
             views={['year', 'month', 'day']}
             value={fieldValues.endDate}
             onChange={(newValue) => {
@@ -102,35 +101,34 @@ const Filter = () => {
               fontSize: 17,
               padding: '0 16px',
               borderRadius: 12,
+              marginLeft: 10,
             }}
           >
             Refine
           </Button>
         </Grid>
-        <Grid item xs={3} md={3} xl={3} sm={3}>
-          <Box sx={{ minWidth: 160, marginLeft: 12 }}>
-            <FormControl fullWidth>
-              <InputLabel id="input-store-label">Search by Store</InputLabel>
-              <Select
-                labelId="input-store-label"
-                id="store-id"
-                value={fieldValues.selectedStore}
-                label="Search by Store"
-                onChange={handleStoreFilter}
-              >
-                <MenuItem value={10}>Location - 12334</MenuItem>
-                <MenuItem value={20}>Location - 74352</MenuItem>
-                <MenuItem value={30}>Location - 554753</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
+        <Grid item xs={2} md={2} xl={2} sm={2}>
+          <FormControl fullWidth>
+            <InputLabel id="input-store-label">Search by Store</InputLabel>
+            <Select
+              labelId="input-store-label"
+              id="store-id"
+              value={fieldValues.selectedStore}
+              label="Search by Store"
+              onChange={handleStoreFilter}
+            >
+              <MenuItem value={10}>Location - 12334</MenuItem>
+              <MenuItem value={20}>Location - 74352</MenuItem>
+              <MenuItem value={30}>Location - 554753</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
         <Grid
           item
-          xs={4}
-          md={4}
-          xl={4}
-          sm={4}
+          xs={5}
+          md={5}
+          xl={5}
+          sm={5}
           style={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -138,22 +136,8 @@ const Filter = () => {
             alignItems: 'center',
           }}
         >
-          <div>Export</div>
-          <Button
-            style={{
-              backgroundColor: '#6F0918FF',
-              color: '#FFF',
-              adding: '0px 20px',
-              height: 45,
-              fontWeight: 'bold',
-              fontSize: 17,
-              padding: '0 16px',
-              borderRadius: 12,
-            }}
-            onClick={openAddModal}
-          >
-            Add Leads
-          </Button>
+          <div>Export :</div>
+          <PrimaryButton label="Add Leads" onClick={openAddModal}/>
         </Grid>
       </Grid>
       {isShowAddModal && <AddLeads />}
