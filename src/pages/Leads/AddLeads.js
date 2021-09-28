@@ -5,6 +5,8 @@ import BootstrapInput from '../../components/FormInput/BootstrapInput';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import PrimaryButton from '../../components/Buttons/PrimaryButton';
+
 import { makeStyles } from '@material-ui/styles';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
@@ -38,6 +40,10 @@ const AddLeads = () => {
     lastName: '',
     phoneNumber: '',
     email: '',
+    vehicleMake: '',
+    vehicleModal: '',
+    vehicleType: '',
+    vehicleYear: '',
   });
   const { state, dispatch } = useContext(Context);
   const classes = useStyles();
@@ -97,7 +103,7 @@ const AddLeads = () => {
         <Grid container style={{ marginTop: 16 }}>
           <Grid item md={6} sm={6}>
             <FormControl
-              style={{ width: '70%', marginLeft: -12, marginTop: 12 }}
+              style={{ width: '80%', marginLeft: -12, marginTop: 12 }}
             >
               <InputLabel
                 shrink
@@ -134,7 +140,7 @@ const AddLeads = () => {
             </FormControl>
           </Grid>
           <Grid item md={6} sm={6}>
-            <FormControl style={{ width: '70%' }}>
+            <FormControl style={{ width: '80%' }}>
               <InputLabel id="input-lead-origin-label">Lead Origin</InputLabel>
               <Select
                 labelId="input-lead-origin-label"
@@ -200,12 +206,16 @@ const AddLeads = () => {
             />
           </Grid>
         </Grid>
+
+        {/*<!-- Vehicle Information -->*/}
         <Grid container className={'row col-12'}>
-          <h2 style={{ color: '#000' }}>Vehicle Information</h2>
+          <h2 style={{ color: '#000', margin: '30px 0 6px 0' }}>
+            Vehicle Information
+          </h2>
         </Grid>
-        <Grid container style={{ marginTop: 16 }}>
+        <Grid container>
           <Grid item md={6} sm={6}>
-            <FormControl style={{ width: '70%', marginTop: 12 }}>
+            <FormControl style={{ width: '80%', marginTop: 12 }}>
               <InputLabel id="input-vehicle-make-label">Make</InputLabel>
               <Select
                 labelId="input-vehicle-make-label"
@@ -222,9 +232,7 @@ const AddLeads = () => {
             </FormControl>
           </Grid>
           <Grid item md={6} sm={6}>
-            <FormControl
-              style={{ width: '70%', marginLeft: -12, marginTop: 12 }}
-            >
+            <FormControl style={{ width: '80%', marginTop: 12 }}>
               <InputLabel id="input-vehicle-modal-label">Modal</InputLabel>
               <Select
                 labelId="input-vehicle-modal-label"
@@ -239,6 +247,63 @@ const AddLeads = () => {
               </Select>
             </FormControl>
           </Grid>
+        </Grid>
+
+        <Grid container style={{ marginTop: 16 }}>
+          <Grid item md={6} sm={6}>
+            <FormControl style={{ width: '80%', marginTop: 12 }}>
+              <InputLabel id="input-vehicle-type-label">Type</InputLabel>
+              <Select
+                labelId="input-vehicle-type-label"
+                id="vehicle-type-id"
+                value={fieldValues.vehicleType}
+                label="Type"
+                onChange={handleChange('vehicleType')}
+                placeholder="Type"
+              >
+                <MenuItem value={10}>Type - 1</MenuItem>
+                <MenuItem value={20}>Type - 2</MenuItem>
+                <MenuItem value={30}>Type - 3</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item md={6} sm={6}>
+            <BootstrapInput
+              defaultValue=""
+              id="input-vehicle-year"
+              value={fieldValues.vehicleYear}
+              onChange={handleChange('vehicleYear')}
+              label="Year"
+              style={{ width: '80%' }}
+              placeholder="Year"
+            />
+          </Grid>
+        </Grid>
+
+        {/* <!-- Footer --> */}
+        <Grid
+          container
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 20,
+          }}
+        >
+          <Button
+            style={{
+              border: '2px solid #6f0918',
+              marginRight: 24,
+              height: 45,
+              fontWeight: 'bold',
+              fontSize: 17,
+              padding: '0 14px',
+              borderRadius: 12,
+            }}
+            onClick={handleClose}
+          >
+            Close
+          </Button>
+          <PrimaryButton label="Save" />
         </Grid>
       </Grid>
     </Modal>

@@ -7,7 +7,6 @@ const PrimaryButton = (props) => (
     style={{
       backgroundColor: '#6F0918FF',
       color: '#FFF',
-      adding: '0px 20px',
       height: 45,
       fontWeight: 'bold',
       fontSize: 17,
@@ -18,3 +17,5 @@ const PrimaryButton = (props) => (
     {props.label}
   </Button>
 );
+
+export default PrimaryButton;

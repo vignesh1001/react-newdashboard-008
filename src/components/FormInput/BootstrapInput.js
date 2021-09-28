@@ -5,10 +5,10 @@ import { FormControl, InputLabel } from '@mui/material';
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
-    marginTop: theme.spacing(3),
+    marginTop: 24,
   },
   '& .MuiInputBase-input': {
-    borderRadius: 4,
+    borderRadius: 1,
     position: 'relative',
     backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
     border: '1px solid #ced4da',
@@ -43,7 +43,11 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 const BootstrapFormInput = (props) => {
   return (
     <FormControl variant="standard" style={{ width: '100%' }}>
-      <InputLabel shrink htmlFor={props.id}>
+      <InputLabel
+        shrink
+        htmlFor={props.id}
+        style={{ fontSize: 20, fontWeight: 'bold' }}
+      >
         {props.label}
       </InputLabel>
       <BootstrapInput {...props} />

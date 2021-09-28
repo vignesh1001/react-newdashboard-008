@@ -137,7 +137,7 @@ const Filter = () => {
           }}
         >
           <div>Export :</div>
-          <PrimaryButton label="Add Leads" onClick={openAddModal}/>
+          <PrimaryButton label="Add Leads" onClick={openAddModal} />
         </Grid>
       </Grid>
       {isShowAddModal && <AddLeads />}
