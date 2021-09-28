@@ -8,7 +8,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     marginTop: 24,
   },
   '& .MuiInputBase-input': {
-    borderRadius: 1,
+    borderRadius: 10,
     position: 'relative',
     backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
     border: '1px solid #ced4da',
