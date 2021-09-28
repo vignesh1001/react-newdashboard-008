@@ -156,7 +156,7 @@ const Filter = () => {
           </Button>
         </Grid>
       </Grid>
-      
+      {isShowAddModal && <AddLeads />}
     </LocalizationProvider>
   );
 };
