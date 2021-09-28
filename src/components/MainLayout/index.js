@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
       padding: '16px',
       marginRight: '10px',
     },
+    backgroundColor: '#FFF',
   },
   headerContainer: {
     backgroundColor: '#006AB4 !important',

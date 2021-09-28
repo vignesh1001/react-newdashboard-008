@@ -33,7 +33,11 @@ const Filter = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Grid item xs={12} style={{ display: 'flex' }}>
+      <Grid
+        item
+        xs={12}
+        style={{ display: 'flex', padding: '18px 24px 8px 24px' }}
+      >
         <DatePicker
           disableFuture
           label="From"
@@ -43,14 +47,28 @@ const Filter = () => {
           onChange={(newValue) => {
             setFieldValues({ ...fieldValues, startDate: newValue });
           }}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              InputLabelProps={{
+                style: {
+                  '-webkit-transform': 'translate(13px, 8px) scale(1)',
+                  transform: 'translate(14px, 8px) scale(1)',
+                  '-ms-transform': 'translate(14px, 8px) scale(1)',
+                },
+              }}
+              inputProps={{
+                style: { 'box-sizing': 'border-box' },
+              }}
+            />
+          )}
         />
         <DatePicker
           disableFuture
           label="To"
           openTo="month"
           views={['year', 'month', 'day']}
-          value={fieldValues.startDate}
+          value={fieldValues.endDate}
           onChange={(newValue) => {
             setFieldValues({ ...fieldValues, endDate: newValue });
           }}
@@ -59,7 +77,13 @@ const Filter = () => {
           )}
         />
         <Button
-          style={{ backgroundColor: '#006AB4', marginLeft: 10, color: '#FFF' }}
+          style={{
+            backgroundColor: '#006AB4',
+            marginLeft: 10,
+            color: '#FFF',
+            margin: '5px 0px 5px 10px',
+            padding: '0px 20px',
+          }}
         >
           Refine
         </Button>
