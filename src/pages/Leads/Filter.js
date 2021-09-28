@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useContext, useEffect } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -10,6 +10,8 @@ import { makeStyles } from '@material-ui/styles';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import {Box, FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import AddLeads from "./AddLeads";
 
 const useStyles = makeStyles({
   content: {
@@ -25,61 +27,116 @@ const Filter = () => {
   const [fieldValues, setFieldValues] = React.useState({
     startDate: new Date(),
     endDate: new Date(),
+      selectedStore: '',
   });
   const { state, dispatch } = useContext(Context);
   const classes = useStyles();
 
   useEffect(() => {}, []);
-
-  return (
+    const [isShowAddModal , setShowAddModal] = useState(false);
+      const handleStoreFilter = (event) => {
+          setFieldValues({...fieldValues, selectedStore: event.target.value});
+      };
+    const openAddModal = () => {
+        setShowAddModal(!isShowAddModal);
+    }
+    return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Grid
-        item
-        xs={12}
+        container
         style={{ display: 'flex', padding: '18px 24px 8px 24px' }}
       >
-        <DatePicker
-          disableFuture
-          label="From"
-          openTo="month"
-          views={['year', 'month', 'day']}
-          value={fieldValues.startDate}
-          onChange={(newValue) => {
-            setFieldValues({ ...fieldValues, startDate: newValue });
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              inputProps={{
-                style: { 'box-sizing': 'border-box' },
+          <Grid item xs={5} md={5} xl={5} sm={5}>
+            <DatePicker
+              disableFuture
+              label="From"
+              openTo="month"
+              views={['year', 'month', 'day']}
+              value={fieldValues.startDate}
+              onChange={(newValue) => {
+                setFieldValues({ ...fieldValues, startDate: newValue });
               }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  inputProps={{
+                    style: { 'box-sizing': 'border-box',minHeight: 45,width: 100 },
+                  }}
+                />
+              )}
             />
-          )}
-        />
-        <DatePicker
-          disableFuture
-          label="To"
-          openTo="month"
-          views={['year', 'month', 'day']}
-          value={fieldValues.endDate}
-          onChange={(newValue) => {
-            setFieldValues({ ...fieldValues, endDate: newValue });
-          }}
-          renderInput={(params) => (
-            <TextField {...params} style={{ marginLeft: 10 }} />
-          )}
-        />
-        <Button
-          style={{
-            backgroundColor: '#006AB4',
-            marginLeft: 10,
-            color: '#FFF',
-            margin: '5px 0px 5px 10px',
-            padding: '0px 20px',
-          }}
-        >
-          Refine
-        </Button>
+            <DatePicker
+              disableFuture
+              label="To"
+              openTo="month"
+              views={['year', 'month', 'day']}
+              value={fieldValues.endDate}
+              onChange={(newValue) => {
+                setFieldValues({ ...fieldValues, endDate: newValue });
+              }}
+              renderInput={(params) => (
+                <TextField
+                   {...params}
+                   style={{ marginLeft: 10 }}
+                   inputProps={{
+                       style: { 'box-sizing': 'border-box',minHeight: 45, width: 100 },
+                   }}
+                />
+              )}
+            />
+            <Button
+              style={{
+                  backgroundColor: '#006AB4',
+                  color: '#FFF',
+                  adding: '0px 20px',
+                  height: 45,
+                  fontWeight: 'bold',
+                  fontSize: 17,
+                  padding: '0 16px',
+                  borderRadius: 12,
+              }}
+            >
+              Refine
+            </Button>
+          </Grid>
+          <Grid  item xs={3} md={3} xl={3} sm={3}>
+              <Box sx={{ minWidth: 160, marginLeft: 12 }}>
+                  <FormControl fullWidth>
+                      <InputLabel id="input-store-label">Search by Store</InputLabel>
+                      <Select
+                          labelId="input-store-label"
+                          id="store-id"
+                          value={fieldValues.selectedStore}
+                          label="Search by Store"
+                          onChange={handleStoreFilter}
+                      >
+                          <MenuItem value={10}>Location - 12334</MenuItem>
+                          <MenuItem value={20}>Location - 74352</MenuItem>
+                          <MenuItem value={30}>Location - 554753</MenuItem>
+                      </Select>
+                  </FormControl>
+              </Box>
+          </Grid>
+          <Grid  item xs={4} md={4} xl={4} sm={4}
+                 style={{display: 'flex', justifyContent: 'space-between', padding: '0 12px', alignItems: 'center'}}>
+              <div>
+                  Export
+              </div>
+              <Button
+                  style={{
+                      backgroundColor: '#6F0918FF',
+                      color: '#FFF',
+                      adding: '0px 20px',
+                      height: 45,
+                      fontWeight: 'bold',
+                      fontSize: 17,
+                      padding: '0 16px',
+                      borderRadius: 12,
+                  }}
+                  onClick={openAddModal}
+              >Add Leads</Button>
+          </Grid>
+          {isShowAddModal && <AddLeads/>}
       </Grid>
     </LocalizationProvider>
   );
