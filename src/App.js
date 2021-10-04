@@ -10,6 +10,7 @@ import LinearProgress from './components/LinearProgress';
 
 import { Provider, Context } from './context/store';
 import Leads from './pages/Leads';
+import Schedule from './pages/Schedule';
 import themes from './themes';
 import { ThemeProvider } from '@material-ui/core/styles';
 
@@ -22,7 +23,7 @@ function App() {
       <ThemeProvider theme={themes(customization)}>
         {/* <Router> */}
         <AppWrapper>
-          <Route exact path={['/', '/leads']}>
+          <Route exact path={['/', '/leads', '/schedule']}>
             <Dashboard
             // copyright={<Copyright sx={{ pt: 4 }} />}
             // header={<Header />}
@@ -30,6 +31,9 @@ function App() {
               <Switch>
                 <Route exact path="/leads">
                   <Leads />
+                </Route>
+                <Route exact path="/schedule">
+                  <Schedule />
                 </Route>
               </Switch>
             </Dashboard>
