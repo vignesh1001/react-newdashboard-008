@@ -9,7 +9,7 @@ import AppWrapper from './components/AppWrapper';
 import LinearProgress from './components/LinearProgress';
 
 import { Provider, Context } from './context/store';
-import Leads from './pages/Leads';
+import Leads from './pages/Leads/AddLeads';
 import Schedule from './pages/Schedule';
 import themes from './themes';
 import { ThemeProvider } from '@material-ui/core/styles';
